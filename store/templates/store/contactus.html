@@ -1,0 +1,56 @@
+{% extends "store/layouts/main.html" %}
+{% block content %}
+
+<div class="contact">
+    <h3>Contact US</h3>
+        <div class="form">
+            <div class="form_left">
+                <p class="contactus_heading">Address</p>
+                <p class="details" >payyannur,kannur,kerala</p><br>
+
+                <p class="contactus_heading">Phones</p>
+                <p class="details">123-456-789</p>
+                <p class="details">987-654-321</p><br>
+
+                <p class="contactus_heading">Email</p>
+                <p class="details"> abcdefg@gmail.com</p><br>
+
+                <p class="contactus_heading">Follow Us</p>
+                <div style="display: flex; flex-direction: row; gap: 20px;">
+                <i class="icon bi bi-instagram"></i>
+                <i class="icon bi bi-facebook"></i>
+                <i class="icon bi bi-whatsapp"></i>
+                <i class="icon bi bi-youtube"></i>
+                </div>
+            </div>
+            <div class="form_right">
+                <p class="contactus_heading">Send Your Question</p>
+                <form action="">
+                    <label for="">Your name</label><br>
+                    <input type="text"><br><br>
+
+                    <label for="">Your email</label><br>
+                    <input type="text"><br><br>
+
+                    <label for="">Your message</label><br>
+                    <textarea name="" id=""></textarea><br><br>
+
+                    <button>SEND</button>
+
+                </form>
+
+            </div>
+        </div>
+
+    <div class="map">
+        <iframe style="width: 100%;" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7716.013653404136!2d75.36224280675087!3d11.869851794234282!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba43d34fa25fb8f%3A0x1f50700d9f68d967!2sKannur!5e0!3m2!1sen!2sin!4v1763899255862!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+</div>
+<div style="display: flex; flex-direction: row; justify-content: space-evenly; align-items: center; gap: 30px; height: 120px; background-color: #c5a880; color: white; font-family: 'serif';font-size: 22px;">
+    <p>Free Delivery</p>
+    <p>Money Back Guarantee</p>
+    <p>24/7 Support</p>
+    <p>High Quality</p>
+</div>
+
+{% endblock %}

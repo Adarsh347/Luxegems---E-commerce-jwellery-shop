@@ -1,0 +1,181 @@
+{% extends 'store/layouts/main.html' %}
+{% load static %}
+{% block content %}
+
+<style>
+/* ===== LuxeGems Theme ===== */
+.product-page {
+    background: #fffbf4;
+}
+
+.product-card {
+    border-radius: 20px;
+    border: none;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+    overflow: hidden;
+}
+
+.product-title {
+    font-family: "Didot", "Playfair Display", serif;
+    font-weight: 400;
+    color: #1E1A16;
+}
+
+.price-original {
+    color: #9c8f85;
+    font-size: 15px;
+}
+
+.price-selling {
+    color: #b88f5f;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.product-viewtag,
+.trending_tag {
+    background: #b88f5f;
+    color: #fff;
+    border-radius: 6px;
+    padding: 4px 8px;
+    font-size: 12px;
+}
+
+.btn-gold {
+    background: #1E1A16;
+    border: none;
+    color: #fff;
+    padding: 10px 18px;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.btn-gold:hover {
+    background: #b88f5f;
+    box-shadow: 0 5px 18px rgba(184,143,95,.35);
+}
+
+.btn-outline-gold {
+    border: 1px solid #b88f5f;
+    color: #b88f5f;
+    background: transparent;
+    border-radius: 8px;
+    padding: 10px 18px;
+}
+
+.btn-outline-gold:hover {
+    background: #b88f5f;
+    color: #fff;
+}
+
+.qty-input {
+    border: 1px solid #e0d6cc;
+    background: #f6f6f6;
+}
+
+.product-description {
+    color: #6e6560;
+    line-height: 1.7;
+}
+</style>
+
+<div class="py-5 product-page">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-10">
+                <div class="card product-card product_data">
+                    <div class="card-body">
+                        <div class="row">
+                            
+                            <!-- Image -->
+                            <div class="col-md-5">
+                                {% if products.tag %}
+                                <label class="product-viewtag mb-2">{{ products.tag }}</label>
+                                {% endif %}
+                                <img src="{{ products.product_image.url }}" class="w-100 rounded" alt="Product image">
+                            </div>
+
+                            <!-- Details -->
+                            <div class="col-md-7">
+                                <h2 class="mb-2 product-title">
+                                    {{ products.name }}
+                                    {% if products.trending %}
+                                    <span class="float-end badge trending_tag">Trending</span>
+                                    {% endif %}
+                                </h2>
+
+                                <hr>
+
+                                <label class="me-3 price-original">
+                                    Original Price : <s>₹ {{ products.original_price|stringformat:'d' }}</s>
+                                </label>
+                                <label class="me-3 price-selling">
+                                    Selling Price : ₹ {{ products.selling_price|stringformat:'d' }}
+                                </label>
+
+                                <p class="mt-3 product-description">
+                                    {{ products.small_description }}
+                                </p>
+
+                                <hr>
+
+                                {% if products.quantity > 0 %}
+                                    <span class="badge bg-success">In Stock</span>
+                                {% else %}
+                                    <span class="badge bg-danger">Out of Stock</span>
+                                {% endif %}
+
+                                <div class="row mt-4">
+                                    <div class="col-md-4">
+                                        {% csrf_token %}
+                                        <input type="hidden" value="{{ products.id }}" class="prod_id">
+
+                                        <label>Quantity</label>
+                                        <div class="input-group text-center mb-3">
+                                            <button class="input-group-text decrement-btn">-</button>
+                                            <input type="number"
+                                                   name="quantity"
+                                                   class="form-control text-center qty-input"
+                                                   value="1"
+                                                   min="1"
+                                                   max="{{ products.quantity }}">
+                                            <button class="input-group-text increment-btn">+</button>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-8 d-flex align-items-end">
+                                        {% if products.quantity > 0 %}
+                                        <button type="button"
+                                                class="btn btn-gold me-3 AddToCartBtn">
+                                            Add To Cart <i class="fa fa-shopping-cart"></i>
+                                        </button>
+                                        {% endif %}
+
+                                        <button type="button"
+                                                class="btn btn-outline-gold addtowishlist">
+                                            Wishlist <i class="fa fa-heart"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Description -->
+                        <div class="row mt-4">
+                            <div class="col-md-12">
+                                <hr>
+                                <h4 class="product-title">Description</h4>
+                                <p class="mt-3 product-description">
+                                    {{ products.description }}
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

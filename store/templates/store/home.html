@@ -1,0 +1,102 @@
+{% extends 'store/layouts/main.html' %}
+{% load static %}
+
+{% block content %}
+<div class="home">
+    <div class="hero col-md-12">
+        <img class="hero_img" src="{% static 'images/hero.jpg' %}" alt="">
+        <p class="hero_text">GRACE IN EVERY DETAIL</p>
+    </div>
+</div>
+
+<div class="heading"><h3>Popular Catagories</h3></div>
+
+<div class="categories">
+    {% for item in category %}
+    <div>
+        <div><img class="categories_item" src="{{ item.image.url }}" alt=""></div>
+        <p class="categories_name">{{ item.name }}</p>
+    </div>
+    {% endfor %}
+</div>
+
+<div class="heading">
+    <h3>Trendy Collections</h3>
+    <h4>Collect your loves with our new arrivals.</h4>
+</div>
+
+<div class="trendy_collections">
+    {% for item in trendy_collections %}
+    <div>
+        <div class="collection_item">
+            <img style="object-fit: cover; width: 100%; height: 100%;" src="{{ item.product_image.url }}" alt="">
+        </div>
+        <p class="collection_name">{{ item.name }}</p>
+        <p class="collection_price">{{ item.selling_price }}</p>
+    </div>
+    {% endfor %}
+</div>
+
+<div style="display: flex; flex-direction: column; align-items: center; padding: 150px 0 130px 0;">
+    <img class="flower" src="{% static 'images/flower.png' %}" alt="">
+    <h3 style="font-size: 70px; text-align: center;">
+        Each piece is thoughtfully <br>
+        designed to reflect <br>
+        sophistication, grace, and the <br>
+        art of fine craftsmanship.
+    </h3>
+</div>
+
+<div class="heading">
+    <h3>Best Sellers</h3>
+    <h4>Hand-picked favorites that define everyday elegance.</h4>
+</div>
+
+<div class="trendy_collections">
+    <div>
+        <div class="collection_item">
+            <img style="object-fit: cover; width: 100%; height: 100%;" src="{% static 'images/earings.webp' %}" alt="">
+        </div>
+        <p class="collection_name">NECKLACES</p>
+        <p class="collection_price">$100.00</p>
+    </div>
+
+    <div>
+        <div class="collection_item">
+            <img style="object-fit: cover; width: 100%; height: 100%;" src="{% static 'images/ring3.jpg' %}" alt="">
+        </div>
+        <p class="collection_name">NECKLACES</p>
+        <p class="collection_price">$100.00</p>
+    </div>
+
+    <div>
+        <div class="collection_item">
+            <img style="object-fit: cover; width: 100%; height: 100%;" src="{% static 'images/necklace.jpeg' %}" alt="">
+        </div>
+        <p class="collection_name">NECKLACES</p>
+        <p class="collection_price">$100.00</p>
+    </div>
+
+    <div>
+        <div class="collection_item">
+            <img style="object-fit: cover; width: 100%; height: 100%;" src="{% static 'images/bracelet.jpeg' %}" alt="">
+        </div>
+        <p class="collection_name">NECKLACES</p>
+        <p class="collection_price">$100.00</p>
+    </div>
+</div>
+
+<div class="end">
+    <div>
+        <h3>Crafted With Love,<br>Inspired by You</h3>
+        <p>
+            From everyday elegance to timeless luxury, each piece is created to highlight
+            your unique beauty and celebrate the moments that matter.
+        </p>
+    </div>
+    <div>
+        <img src="{% static 'images/end.jpeg' %}" alt="">
+    </div>
+</div>
+
+{% endblock %}

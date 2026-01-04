@@ -1,0 +1,324 @@
+{% extends 'store/layouts/main.html' %}
+{% load static %}
+{% block content %}
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        background: #fffbf4;
+    }
+    
+    .register-wrapper {
+        padding: 30px;
+        max-width: 100vw;
+        min-height: 70vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .register-container {
+        width: 100%;
+        max-width: 900px;
+        background: #fff;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        display: flex;
+        min-height: 500px;
+        
+    }
+    
+    .register-left {
+        width: 50%;
+        background-image: url("{% static 'images/earings.webp' %}");
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+    }
+    
+    .register-left-content {
+        text-align: center;
+        padding: 30px;
+    }
+    
+    .register-left h2 {
+        font-family: "Didot", "Playfair Display", serif;
+        font-size: 28px;
+        color: #e89434;
+        margin-bottom: 15px;
+        font-weight: 400;
+    }
+    
+    .register-left p {
+        color: #d0baa0;
+        font-size: 14px;
+        line-height: 1.5;
+    }
+    
+    .register-right {
+        width: 50%;
+        padding: 40px 45px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    
+    .register-right h2 {
+        font-family: "Didot", "Playfair Display", serif;
+        font-size: 32px;
+        color: #1E1A16;
+        margin-bottom: 25px;
+        text-align: center;
+        font-weight: 400;
+        letter-spacing: 1px;
+    }
+    
+    .form-group {
+        margin-bottom: 18px;
+    }
+    
+    .form-control {
+        width: 100%;
+        padding: 12px 14px;
+        border: 1px solid #e0d6cc;
+        border-radius: 8px;
+        font-size: 14px;
+        background: #f6f6f6;
+        transition: all 0.3s ease;
+        box-sizing: border-box;
+        font-family: inherit;
+    }
+    
+    .form-control:focus {
+        outline: none;
+        border-color: #b88f5f;
+        background: #fff;
+        box-shadow: 0 0 0 3px rgba(184, 143, 95, 0.1);
+    }
+    
+    .form-control::placeholder {
+        color: #b8aea7;
+    }
+    
+    .register-right label {
+        font-size: 13px;
+        color: #6e6560;
+        display: block;
+        margin-bottom: 5px;
+        font-weight: 500;
+    }
+    
+    .error-message {
+        font-size: 12px;
+        color: #dc3545;
+        margin-top: 4px;
+        display: block;
+    }
+    
+    .register-button {
+        width: 100%;
+        padding: 14px;
+        background: #1E1A16;
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        font-size: 15px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin-top: 10px;
+        letter-spacing: 1px;
+        font-family: inherit;
+    }
+    
+    .register-button:hover {
+        background: #b88f5f;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 15px rgba(184, 143, 95, 0.3);
+    }
+    
+    .login-footer {
+        text-align: center;
+        margin-top: 20px;
+        padding-top: 18px;
+        border-top: 1px solid #e0d6cc;
+    }
+    
+    .login-footer p {
+        color: #6e6560;
+        font-size: 14px;
+        margin-bottom: 5px;
+    }
+    
+    .login-link {
+        color: #b88f5f;
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.3s ease;
+    }
+    
+    .login-link:hover {
+        color: #1E1A16;
+        text-decoration: underline;
+    }
+    
+    .password-requirements {
+        background: #f9f7f4;
+        border-left: 3px solid #b88f5f;
+        padding: 10px 12px;
+        margin: 12px 0;
+        border-radius: 0 5px 5px 0;
+    }
+    
+    .password-requirements ul {
+        margin: 0;
+        padding-left: 18px;
+        font-size: 12px;
+        color: #6e6560;
+    }
+    
+    .password-requirements li {
+        margin-bottom: 2px;
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+        .register-container {
+            flex-direction: column;
+            max-width: 500px;
+            min-height: auto;
+        }
+        
+        .register-left,
+        .register-right {
+            width: 100%;
+        }
+        
+        .register-left {
+            padding: 25px 20px;
+        }
+        
+        .register-left h2 {
+            font-size: 24px;
+        }
+        
+        .register-right {
+            padding: 30px 25px;
+        }
+        
+        .register-wrapper {
+            padding: 20px;
+            min-height: auto;
+        }
+    }
+    
+    @media (max-width: 480px) {
+        .register-right {
+            padding: 25px 20px;
+        }
+        
+        .register-right h2 {
+            font-size: 28px;
+        }
+        
+        .register-left p {
+            font-size: 13px;
+        }
+    }
+</style>
+
+<div class="register-wrapper">
+    <div class="register-container">
+        <div class="register-left">
+            <div class="register-left-content">
+                <h2>Join LuxeGems</h2>
+                <p>Create your account to explore our exclusive jewelry collection and enjoy personalized shopping.</p>
+                <p style="margin-top: 15px; font-style: italic; font-size: 13px;">"Timeless elegance crafted for you"</p>
+            </div>
+        </div>
+        
+        <div class="register-right">
+            <h2>Create Account</h2>
+            <form method="POST">
+                {% csrf_token %}
+                
+                <div class="form-group">
+                    <label for="id_username">Username</label>
+                    <input type="text" 
+                           name="username" 
+                           id="id_username" 
+                           class="form-control"
+                           placeholder="Enter username"
+                           value="{{ form.username.value|default:'' }}"
+                           required>
+                    {% if form.errors.username %}
+                    <span class="error-message">{{ form.errors.username }}</span>
+                    {% endif %}
+                </div>
+                
+                <div class="form-group">
+                    <label for="id_email">Email Address</label>
+                    <input type="email" 
+                           name="email" 
+                           id="id_email" 
+                           class="form-control"
+                           placeholder="Enter email"
+                           value="{{ form.email.value|default:'' }}"
+                           required>
+                    {% if form.errors.email %}
+                    <span class="error-message">{{ form.errors.email }}</span>
+                    {% endif %}
+                </div>
+                
+                <div class="form-group">
+                    <label for="id_password1">Password</label>
+                    <input type="password" 
+                           name="password1" 
+                           id="id_password1" 
+                           class="form-control"
+                           placeholder="Enter password"
+                           required>
+                    {% if form.errors.password1 %}
+                    <span class="error-message">{{ form.errors.password1 }}</span>
+                    {% endif %}
+                    
+                    {% if not form.errors.password1 %}
+                    <div class="password-requirements">
+                        <small>Password requirements:</small>
+                        <ul>
+                            <li>At least 8 characters</li>
+                            <li>Not too common</li>
+                            <li>Not entirely numeric</li>
+                        </ul>
+                    </div>
+                    {% endif %}
+                </div>
+                
+                <div class="form-group">
+                    <label for="id_password2">Confirm Password</label>
+                    <input type="password" 
+                           name="password2" 
+                           id="id_password2" 
+                           class="form-control"
+                           placeholder="Confirm password"
+                           required>
+                    {% if form.errors.password2 %}
+                    <span class="error-message">{{ form.errors.password2 }}</span>
+                    {% endif %}
+                </div>
+                
+                <button type="submit" class="register-button">CREATE ACCOUNT</button>
+            </form>
+            
+            <div class="login-footer">
+                <p>Already have an account?</p>
+                <a href="{% url 'loginpage' %}" class="login-link">Sign In</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

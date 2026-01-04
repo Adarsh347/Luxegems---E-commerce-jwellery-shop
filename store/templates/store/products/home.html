@@ -1,0 +1,46 @@
+{% extends 'store/layouts/main.html' %}
+{% load static %}
+
+{% block content %}
+
+    <div class="products">
+        <div>
+            <h3>Products</h3>
+            <p>Home > Products</p>
+        </div>
+    </div>
+        <div style="display: flex; flex-direction: row; width: 100%; padding: 30px;">
+            <div class="right" style="width: 25%;">
+                <h2 style="font-size: 28px; margin-bottom: 10px; font-family: 'serif';">CATEGORIES</h2><br>
+                <p style="font-size: 15px; color: #666666;" >Necklaces</p>
+                <p style="font-size: 15px; color: #666666;" >Rings</p>
+                <p style="font-size: 15px; color: #666666;" >Braclets</p>
+                <p style="font-size: 15px; color: #666666;" >Earings</p>
+                <p style="font-size: 15px; color: #666666;" >Gift Ideas</p>
+                <br>
+                <h2 style="font-size: 28px; margin-bottom: 10px; font-family: 'serif';">PRICE</h2><br>
+                <div class="price-range">
+                    <input type="range" min="0" max="5000" value="5000" class="range-input" id="priceRange">
+                    <div class="price-labels">
+                        <span>₹0</span>
+                        <span id="priceValue">₹5000</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="left" style="width: 75%;">
+                <div class="product-grid">
+                    {% for item in products %}
+                    <a href="{% url 'productview' item.category.slug item.slug %}">
+                        <div class="product-card">
+                            <img src="{{ item.product_image.url }}" alt="">
+                            <h4 class="text-start">{{ item.name }}</h4>
+                            <p>${{ item.selling_price }}</p>
+                        </div>
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+{% endblock %}
