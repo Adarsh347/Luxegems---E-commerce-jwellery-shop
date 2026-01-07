@@ -1,0 +1,275 @@
+{% extends 'store/layouts/main.html' %}
+{% block content %}
+    <style>
+            body{
+                margin: 0;
+                padding: 0;
+                background: #fffbf4;
+            }
+            h3{
+                
+                font-size: 50px;
+                font-family: "Didot", "Playfair Display", serif;
+                text-shadow: 
+                0 4px 15px rgba(0,0,0,0.15),
+                0 8px 30px rgba(0,0,0,0.1);
+                color: #1E1A16;
+                text-align: center;
+            }
+            .navbar{
+                background-color:#fffbf4;
+            }
+            .navbar .nav-link{
+                font-size: 16px;
+                color: #333;
+                padding: .25rem .5rem;
+            }
+            .navbar .nav-link:hover { 
+                color: #b88f5f;
+            }
+
+            .bi{
+                font-size: 20px; color: #3a3a3a;
+            }
+            .bi:hover{
+                color: #b88f5f;
+            }
+            .navbar .navbar-collapse{
+                flex: 0 0 auto;
+            }
+            .navbar .navbar-brand{
+                flex: 0 0 auto;
+            }
+
+
+
+            .cart{
+                width: 100%;
+                height: 300px;
+                background-image: url('wishlist.png') ;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                text-align: center;
+            }
+            .cart img{
+                object-fit: cover;
+                width: 100%;
+                height: 100%;
+            }
+            .image img{
+                width:80px;
+                height:80px;
+                object-fit: cover;
+            }
+            td ,th{
+                padding: 10px 15px;
+            }
+            table{
+                width: 55%;
+                margin-left: 90px;
+            }
+            .icon{
+                width: 1%;
+            }
+            .image{
+                width: 10%;
+            }
+            .details{
+                width: 45%;
+            }
+            .quantity{
+                width: 22%;
+            }
+            .subtotal{
+                width: 22%;
+            }
+            .items{
+                border-bottom: 1px solid rgb(201, 201, 201);
+            }
+            .qty-box{
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                border: 1px solid #d6cfc7;
+                padding: 6px 10px;
+                width: 110px;
+                justify-content: space-between;
+            }
+
+            .qty-btn{
+                background-color: transparent;
+                color: rgb(0, 0, 0);
+                border: none;
+                width: 30px;
+                height: 30px;
+                font-size: 18px;
+                cursor: pointer;
+            }
+            .qty-input{
+                width: 35px;
+                text-align: center;
+                border: none;
+                font-size: 16px;
+                background: transparent;
+            }
+            .qty-input:focus{
+                outline: none;
+            }
+            .update{
+                width: 80%;
+                height: 50px;
+                border: 1px solid #d6cfc7;
+                background-color: transparent;
+            }
+
+            .checkout-box{
+                width: 400px;
+                background: transparent;
+                padding: 25px 30px;
+                border: 1px solid #e0d6cc;
+                margin-left: auto;
+                margin-top: 20px;
+                margin-right: 30px;
+            }
+
+            .checkout-box p{
+                font-size: 28px;
+                margin-bottom: 20px;
+            }
+
+            .checkout-box .line{
+                display: flex;
+                justify-content: space-between;
+                margin: 10px 0;
+                font-size: 17px;
+                color: #4b4038;
+            }
+
+            .checkout-box hr{
+                border: none;
+                border-top: 1px solid #e0d6cc;
+                margin: 20px 0;
+            }
+
+            .checkout-box .total{
+                display: flex;
+                justify-content: space-between;
+                font-size: 22px;
+                font-weight: 700;
+                color: #1E1A16;
+                margin-bottom: 25px;
+            }
+
+            .checkout-btn{
+                width: 100%;
+                padding: 12px 0;
+                background: transparent;
+                color: rgb(0, 0, 0);
+                border: 1px solid #e0d6cc;
+                font-size: 16px;
+                cursor: pointer;
+                transition: 0.2s;
+            }
+    </style>
+
+
+    <div class="menu">
+        <div class="cart">
+            <div>
+                <h3>Cart</h3>
+                <p>Home > Cart</p>
+            </div>
+        </div>
+    
+        <div style="padding: 40px 25px; display:flex; flex-direction: row;">
+        <table>
+            <tr>
+                <th class="icon"></th>
+                <th class="image">PRODUCT</th>
+                <th></th>
+                <th class="quantity">QUANTITY</th>
+                <th class="subtotal">SUBTOTAL</th>
+            </tr>
+
+
+
+
+
+            <tr class="items">
+                <td class="icon"><i class="bi bi-x" style="font-size: 30px;"></i></td>
+                <td class="image"><img src="ring1.jpg" alt=""></td>
+                <td class="details">
+                    <p>Ringname</p>
+                    <p>$100</p>
+                </td>
+                <td class="quantity">
+                    <div class="qty-box">
+                    <button class="qty-btn">-</button>
+                    <input type="text" value="1" class="qty-input">
+                    <button class="qty-btn">+</button>
+                    </div>
+                </td>
+                <td class="subtotal">$100</td>
+            </tr>
+            <tr class="items">
+                <td class="icon"><i class="bi bi-x" style="font-size: 30px;"></i></td>
+                <td class="image"><img src="ring1.jpg" alt=""></td>
+                <td class="details">
+                    <p>Ringname</p>
+                    <p>$100</p>
+                </td>
+                <td class="quantity">
+                    <div class="qty-box">
+                    <button class="qty-btn">-</button>
+                    <input type="text" value="1" class="qty-input">
+                    <button class="qty-btn">+</button>
+                    </div>
+                </td>
+                <td class="subtotal">$100</td>
+            </tr>
+
+
+
+
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td colspan="2"><button class="update">UPDATE CART</button></td>
+            </tr>
+      
+        </table>
+
+
+        <div class="checkout-box">
+            <p>Cart Totals</p>
+        
+            <div class="line">
+                <span>Subtotal:</span>
+                <span>$200</span>
+            </div>
+        
+            <div class="line">
+                <span>Shipping:</span>
+                <span>Free</span>
+            </div>
+        
+            <hr>
+        
+            <div class="total">
+                <span>Total:</span>
+                <span>$200</span>
+            </div>
+        
+            <button class="checkout-btn">PROCEED TO CHECKOUT</button>
+        </div>
+        
+
+        </div>
+        
+
+    </div>
+
+{% endblock %}

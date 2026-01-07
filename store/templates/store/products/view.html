@@ -77,6 +77,36 @@
     color: #6e6560;
     line-height: 1.7;
 }
+.quantity-group {
+    max-width: 160px;
+}
+
+.quantity-group .qty-btn,
+.quantity-group .qty-input {
+    height: 44px;
+}
+
+.qty-btn {
+    width: 44px;
+    font-size: 20px;
+    font-weight: 500;
+    background: #f6f6f6;
+    border: 1px solid #e0d6cc;
+    color: #1E1A16;
+}
+
+.qty-btn:hover {
+    background: #b88f5f;
+    color: #fff;
+}
+
+.qty-input {
+    border-left: 0;
+    border-right: 0;
+    background: #fff;
+    font-size: 15px;
+}
+
 </style>
 
 <div class="py-5 product-page">
@@ -130,16 +160,18 @@
                                         {% csrf_token %}
                                         <input type="hidden" value="{{ products.id }}" class="prod_id">
 
-                                        <label>Quantity</label>
-                                        <div class="input-group text-center mb-3">
-                                            <button class="input-group-text decrement-btn">-</button>
+                                        <label class="mb-1">Quantity</label>
+                                        <div class="input-group mb-3 quantity-group">
+                                            <button type="button" class="btn qty-btn decrement-btn">−</button>
+
                                             <input type="number"
-                                                   name="quantity"
-                                                   class="form-control text-center qty-input"
-                                                   value="1"
-                                                   min="1"
-                                                   max="{{ products.quantity }}">
-                                            <button class="input-group-text increment-btn">+</button>
+                                                name="quantity"
+                                                class="form-control text-center qty-input"
+                                                value="1"
+                                                min="1"
+                                                max="{{ products.quantity }}">
+
+                                            <button type="button" class="btn qty-btn increment-btn">+</button>
                                         </div>
                                     </div>
 
@@ -177,5 +209,33 @@
         </div>
     </div>
 </div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll(".increment-btn").forEach(btn => {
+            btn.addEventListener("click", function () {
+                let input = this.parentElement.querySelector(".qty-input");
+                let max = parseInt(input.max);
+                let value = parseInt(input.value);
+    
+                if (value < max) {
+                    input.value = value + 1;
+                }
+            });
+        });
+    
+        document.querySelectorAll(".decrement-btn").forEach(btn => {
+            btn.addEventListener("click", function () {
+                let input = this.parentElement.querySelector(".qty-input");
+                let value = parseInt(input.value);
+    
+                if (value > 1) {
+                    input.value = value - 1;
+                }
+            });
+        });
+    });
+    </script>
+    
 
 {% endblock %}

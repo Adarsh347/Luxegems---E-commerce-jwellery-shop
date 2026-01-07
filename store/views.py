@@ -10,9 +10,12 @@ def home(request):
     return render(request,'store/home.html',context)
 
 def products(request):
+    category_slug = request.GET.get('category')
     products = Product.objects.filter(status=0)
-    context = {'products':products}
-    return render(request,"store/products/home.html",context)
+    if category_slug:
+        products = products.filter(category__slug=category_slug)
+    context = { 'products': products }
+    return render(request, "store/products/home.html", context)
 
 def aboutus(request):
     return render(request,"store/aboutus.html")

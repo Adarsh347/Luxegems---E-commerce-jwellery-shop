@@ -6,17 +6,28 @@
     <div class="products">
         <div>
             <h3>Products</h3>
-            <p>Home > Products</p>
+            <p><a href="{% url 'home' %}" class="text-decoration-none text-reset">Home</a> > <a href="{% url 'products' %}" class="text-decoration-none text-reset">Products</a></p>
         </div>
     </div>
         <div style="display: flex; flex-direction: row; width: 100%; padding: 30px;">
             <div class="right" style="width: 25%;">
                 <h2 style="font-size: 28px; margin-bottom: 10px; font-family: 'serif';">CATEGORIES</h2><br>
-                <p style="font-size: 15px; color: #666666;" >Necklaces</p>
-                <p style="font-size: 15px; color: #666666;" >Rings</p>
-                <p style="font-size: 15px; color: #666666;" >Braclets</p>
-                <p style="font-size: 15px; color: #666666;" >Earings</p>
-                <p style="font-size: 15px; color: #666666;" >Gift Ideas</p>
+                <p>
+                <a href="{% url 'products' %}?category=necklaces"
+                   class="text-decoration-none text-reset">Necklaces</a>
+                </p>
+                <p>
+                   <a href="{% url 'products' %}?category=rings"
+                   class="text-decoration-none text-reset">Rings</a>
+                </p>
+                <p>
+                <a href="{% url 'products' %}?category=bracelets"
+                   class="text-decoration-none text-reset">Bracelets</a>
+                </p>
+                <p>
+                <a href="{% url 'products' %}?category=earrings"
+                   class="text-decoration-none text-reset">Earrings</a>
+                </p>                  
                 <br>
                 <h2 style="font-size: 28px; margin-bottom: 10px; font-family: 'serif';">PRICE</h2><br>
                 <div class="price-range">
@@ -31,11 +42,11 @@
             <div class="left" style="width: 75%;">
                 <div class="product-grid">
                     {% for item in products %}
-                    <a href="{% url 'productview' item.category.slug item.slug %}">
+                    <a href="{% url 'productview' item.category.slug item.slug %}" class="text-decoration-none text-reset">
                         <div class="product-card">
                             <img src="{{ item.product_image.url }}" alt="">
                             <h4 class="text-start">{{ item.name }}</h4>
-                            <p>${{ item.selling_price }}</p>
+                            <p>₹{{ item.selling_price }}</p>
                         </div>
                     </a>
                     {% endfor %}
