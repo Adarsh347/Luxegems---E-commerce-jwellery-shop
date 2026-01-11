@@ -95,36 +95,23 @@
     </div>
 </div>
 <div style="padding: 40px 15px;">
-    <table>
-        <tr>
-            <td class="icon"><i class="bi bi-x" style="font-size: 30px;"></i></td>
-            <td class="image"><img src="ring1.jpg" alt=""></td>
-            <td class="details">
-                <p>Ringname</p>
-                <p>$100</p>
-            </td>
-            <td class="botton"><button style="padding: 10px 15px; border: none; background: #c5a880; color: white; ">ADD TO CART</button></td>
-        </tr>
-        <tr>
-            <td class="icon"><i class="bi bi-x" style="font-size: 30px;"></i></td>
-            <td class="image"><img src="ring1.jpg" alt=""></td>
-            <td class="details">
-                <p>Ringname</p>
-                <p>$100</p>
-            </td>
-            <td class="botton"><button style="padding: 10px 15px; border: none; background: #c5a880; color: white; ">ADD TO CART</button></td>
-        </tr>
-        <tr>
-            <td class="icon"><i class="bi bi-x" style="font-size: 30px;"></i></td>
-            <td class="image"><img src="ring1.jpg" alt=""></td>
-            <td class="details">
-                <p>Ringname</p>
-                <p>$100</p>
-            </td>
-            <td class="botton"><button style="padding: 10px 15px; border: none; background: #c5a880; color: white; ">ADD TO CART</button></td>
-        </tr>
-
-    </table>
+    {% if wishlist %}
+    {% for item in wishlist %}
+        <table>
+            <tr>
+                <td class="icon"><i class="bi bi-x" style="font-size: 30px;"></i></td>
+                <td class="image"><img src="{{ item.product.product_image.url }}" alt=""></td>
+                <td class="details">
+                    <p>{{ item.product.name }}</p>
+                    <p>{{ item.product.selling_price }}</p>
+                </td>
+                <td class="botton"><button style="padding: 10px 15px; border: none; background: #c5a880; color: white; ">ADD TO CART</button></td>
+            </tr>
+        </table>
+    {% endfor %}
+    {% else %}
+    <h4> your wishlist is empty</h4>
+    {% endif %}
 </div>
 
 {% endblock %}

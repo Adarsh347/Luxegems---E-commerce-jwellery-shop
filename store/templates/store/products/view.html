@@ -122,7 +122,7 @@
                                 {% if products.tag %}
                                 <label class="product-viewtag mb-2">{{ products.tag }}</label>
                                 {% endif %}
-                                <img src="{{ products.product_image.url }}" class="w-100 rounded" alt="Product image">
+                                <img src="{{ products.product_image.url }}" class="w-100 rounded " style="height: 450px" alt="Product image">
                             </div>
 
                             <!-- Details -->
@@ -155,7 +155,7 @@
                                     <span class="badge bg-danger">Out of Stock</span>
                                 {% endif %}
 
-                                <div class="row mt-4">
+                                <div class="row mt-4 align-items-center">
                                     <div class="col-md-4">
                                         {% csrf_token %}
                                         <input type="hidden" value="{{ products.id }}" class="prod_id">
@@ -175,7 +175,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-md-8 d-flex align-items-end">
+                                    <div class="col-md-8 d-flex align-items-end mt-2">
                                         {% if products.quantity > 0 %}
                                         <button type="button"
                                                 class="btn btn-gold me-3 AddToCartBtn">
@@ -209,33 +209,6 @@
         </div>
     </div>
 </div>
-
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        document.querySelectorAll(".increment-btn").forEach(btn => {
-            btn.addEventListener("click", function () {
-                let input = this.parentElement.querySelector(".qty-input");
-                let max = parseInt(input.max);
-                let value = parseInt(input.value);
-    
-                if (value < max) {
-                    input.value = value + 1;
-                }
-            });
-        });
-    
-        document.querySelectorAll(".decrement-btn").forEach(btn => {
-            btn.addEventListener("click", function () {
-                let input = this.parentElement.querySelector(".qty-input");
-                let value = parseInt(input.value);
-    
-                if (value > 1) {
-                    input.value = value - 1;
-                }
-            });
-        });
-    });
-    </script>
     
 
 {% endblock %}
