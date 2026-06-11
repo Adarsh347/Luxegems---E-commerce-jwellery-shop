@@ -61,7 +61,15 @@ h4{
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
+    flex-wrap: wrap;
+    gap: 40px;
+}
 
+.categories > div{
+    flex: 0 1 220px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .categories_item{
@@ -83,6 +91,77 @@ h4{
     background-color: #f6f6f6;
     width: 300px;
     height: 300px;
+    overflow: hidden;
+}
+
+.collection_item img{
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.trendy_collections_home,
+.trendy_collections_best_sellers{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    gap: 30px;
+}
+
+.trendy_collections_home > div,
+.trendy_collections_best_sellers > div{
+    flex: 0 1 300px;
+    max-width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.trendy_collections_home .collection_item,
+.trendy_collections_best_sellers .collection_item{
+    width: 300px;
+    height: 300px;
+}
+
+@media (max-width: 992px) {
+    .categories{
+        gap: 30px;
+    }
+    .categories > div{
+        flex: 0 1 calc(33.33% - 24px);
+    }
+    .trendy_collections_home > div,
+    .trendy_collections_best_sellers > div{
+        flex: 0 1 calc(50% - 30px);
+        max-width: calc(50% - 30px);
+    }
+    .trendy_collections_home .collection_item,
+    .trendy_collections_best_sellers .collection_item{
+        width: 100%;
+        height: auto;
+        aspect-ratio: 1 / 1;
+    }
+}
+
+@media (max-width: 576px) {
+    .categories > div{
+        flex: 0 1 calc(50% - 20px);
+    }
+    .categories_item{
+        width: 150px;
+        height: 150px;
+    }
+    .trendy_collections_home,
+    .trendy_collections_best_sellers{
+        justify-content: center;
+    }
+    .trendy_collections_home > div,
+    .trendy_collections_best_sellers > div{
+        flex: 0 1 100%;
+        max-width: 100%;
+        padding: 0 22px;
+        box-sizing: border-box;
+    }
 }
 .flower{
     justify-content: center;
