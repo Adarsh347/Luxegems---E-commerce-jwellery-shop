@@ -176,6 +176,7 @@
 
 
     <div class="menu">
+        <div style="display:none">{% csrf_token %}</div>
         <div class="cart">
             <div>
                 <h3>Cart</h3>
@@ -192,54 +193,36 @@
                 <th class="quantity">QUANTITY</th>
                 <th class="subtotal">SUBTOTAL</th>
             </tr>
-
-
-
-
-
-            <tr class="items">
-                <td class="icon"><i class="bi bi-x" style="font-size: 30px;"></i></td>
-                <td class="image"><img src="ring1.jpg" alt=""></td>
-                <td class="details">
-                    <p>Ringname</p>
-                    <p>$100</p>
-                </td>
-                <td class="quantity">
-                    <div class="qty-box">
-                    <button class="qty-btn">-</button>
-                    <input type="text" value="1" class="qty-input">
-                    <button class="qty-btn">+</button>
-                    </div>
-                </td>
-                <td class="subtotal">$100</td>
-            </tr>
-            <tr class="items">
-                <td class="icon"><i class="bi bi-x" style="font-size: 30px;"></i></td>
-                <td class="image"><img src="ring1.jpg" alt=""></td>
-                <td class="details">
-                    <p>Ringname</p>
-                    <p>$100</p>
-                </td>
-                <td class="quantity">
-                    <div class="qty-box">
-                    <button class="qty-btn">-</button>
-                    <input type="text" value="1" class="qty-input">
-                    <button class="qty-btn">+</button>
-                    </div>
-                </td>
-                <td class="subtotal">$100</td>
-            </tr>
-
-
-
-
+            {% if cart_items %}
+                {% for item in cart_items %}
+                <tr class="items" data-id="{{ item.id }}">
+                    <td class="icon"><i class="bi bi-x" style="font-size: 30px;"></i></td>
+                    <td class="image"><img src="{{ item.product.product_image.url }}" alt=""></td>
+                    <td class="details">
+                        <p>{{ item.product.name }}</p>
+                        <p>₹ {{ item.product.selling_price|stringformat:'d' }}</p>
+                    </td>
+                    <td class="quantity">
+                        <div class="qty-box">
+                            <button class="qty-btn">-</button>
+                            <input type="text" value="{{ item.product_qty }}" class="qty-input">
+                            <button class="qty-btn">+</button>
+                        </div>
+                    </td>
+                    <td class="subtotal">₹ {{ item.subtotal|stringformat:'d' }}</td>
+                </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td colspan="5" style="text-align:center; padding: 40px 0;">Your cart is empty.</td>
+                </tr>
+            {% endif %}
             <tr>
                 <td></td>
                 <td></td>
                 <td></td>
                 <td colspan="2"><button class="update">UPDATE CART</button></td>
             </tr>
-      
         </table>
 
 
@@ -248,7 +231,7 @@
         
             <div class="line">
                 <span>Subtotal:</span>
-                <span>$200</span>
+                <span>₹ {{ total|stringformat:'d' }}</span>
             </div>
         
             <div class="line">
@@ -260,7 +243,7 @@
         
             <div class="total">
                 <span>Total:</span>
-                <span>$200</span>
+                <span>₹ {{ total|stringformat:'d' }}</span>
             </div>
         
             <button class="checkout-btn">PROCEED TO CHECKOUT</button>

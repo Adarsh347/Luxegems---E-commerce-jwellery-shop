@@ -15,4 +15,10 @@ urlpatterns = [
     path('logout/',authview.logoutpage,name='logoutpage'),
 
     path('collections/<str:cate_slug>/<str:prod_slug>',views.productview,name='productview'),
+
+    path('add-to-cart',cart.addtocart,name='/add-to-cart'),
+    path('add-to-wishlist',wishlist.addtowishlist,name='add-to-wishlist'),
+    path('update-cart', cart.update_cart, name='update-cart'),
+    path('delete-cart-item', cart.delete_cart_item, name='delete-cart-item'),
+
 ]

@@ -13,10 +13,12 @@
 
 <div class="categories">
     {% for item in category %}
+        <a href="{% url 'products' %}?category={{ item.name|lower }}" style="text-decoration:none; color:inherit;">
     <div>
         <div><img class="categories_item" src="{{ item.image.url }}" alt=""></div>
         <p class="categories_name">{{ item.name }}</p>
     </div>
+</a>
     {% endfor %}
 </div>
 
