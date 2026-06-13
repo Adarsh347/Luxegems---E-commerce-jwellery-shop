@@ -130,3 +130,24 @@ $(document).ready( function () {
         });
     });
 });
+
+$(document).on('click', '.delete-wishlist-item', function () {
+
+    var wishlist_id = $(this).data('wishlist-id');
+    var token = $('input[name=csrfmiddlewaretoken]').val();
+
+    $.ajax({
+        method: "POST",
+        url: "/delete-wishlist-item",
+        data: {
+            wishlist_id: wishlist_id,
+            csrfmiddlewaretoken: token
+        },
+        success: function (response) {
+            location.reload();
+        }
+    });
+});
+
+
+

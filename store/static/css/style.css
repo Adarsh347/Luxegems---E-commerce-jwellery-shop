@@ -162,6 +162,21 @@ h4{
         padding: 0 22px;
         box-sizing: border-box;
     }
+    .end {
+        flex-direction: column;
+        padding: 60px 22px;
+        gap: 30px;
+        align-items: center;
+    }
+    .end img {
+        max-width: 100%;
+        height: auto;
+        max-height: 420px;
+    }
+    .end h3,
+    .end p {
+        text-align: center;
+    }
 }
 .flower{
     justify-content: center;

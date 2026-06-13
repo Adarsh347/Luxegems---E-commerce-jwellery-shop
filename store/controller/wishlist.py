@@ -27,4 +27,16 @@ def addtowishlist(request):
             return JsonResponse({"status":"Login to continue"})
     return redirect('/')
 
+def delete_wishlist_item(request):
+    if request.method == "POST":
+        wishlist_id = request.POST.get('wishlist_id')
+
+        Wishlist.objects.filter(
+            id=wishlist_id,
+            user=request.user
+        ).delete()
+
+        return JsonResponse({
+            'status': 'Item removed from wishlist'
+        })
 

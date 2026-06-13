@@ -95,17 +95,26 @@
     </div>
 </div>
 <div style="padding: 40px 15px;">
+    <div style="display:none">{% csrf_token %}</div>
     {% if wishlist %}
     {% for item in wishlist %}
         <table>
-            <tr>
-                <td class="icon"><i class="bi bi-x" style="font-size: 30px;"></i></td>
+            <tr class="product_data">
+                <td class="icon">
+                    <i class="bi bi-x delete-wishlist-item"
+                    data-wishlist-id="{{ item.id }}"
+                    style="font-size: 30px; cursor:pointer;"></i>
+                </td>                
                 <td class="image"><img src="{{ item.product.product_image.url }}" alt=""></td>
                 <td class="details">
                     <p>{{ item.product.name }}</p>
                     <p>{{ item.product.selling_price }}</p>
                 </td>
-                <td class="botton"><button style="padding: 10px 15px; border: none; background: #c5a880; color: white; ">ADD TO CART</button></td>
+                <td class="botton">
+                    <input type="hidden" value="{{ item.product.id }}" class="prod_id">
+                    <input type="hidden" value="1" class="qty-input">
+                    <button style="padding: 10px 15px; border: none; background: #c5a880; color: white; " type="button" class="AddToCartBtn">ADD TO CART</button>
+                </td>
             </tr>
         </table>
     {% endfor %}
